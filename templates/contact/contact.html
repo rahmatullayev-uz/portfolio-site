@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}Bog'lanish — Aloqa & Hamkorlik | Rahmatullayev.uz{% endblock %}
+{% block meta_description %}Sardor Rahmatullayev bilan bog'lanish, yangi loyihalar, maslahat va hamkorlik uchun aloqa sahifasi.{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto space-y-12">
+
+    <!-- Sahifa Bosh Qismi -->
+    <div class="space-y-4">
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
+            Bog'lanish va Hamkorlik
+        </h1>
+        <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+            Sizda yangi loyiha g'oyasi, konsultatsiya yoki taklif bormi? Quyidagi shakl orqali to'g'ridan-to'g'ri xabar qoldiring.
+        </p>
+    </div>
+
+    <!-- Asosiy Qism: Ma'lumotlar va Forma -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Chap Tomon: Kontakt Ma'lumotlari (5 ustun) -->
+        <div class="lg:col-span-5 space-y-6">
+            <!-- Email Kartochkasi -->
+            <div class="p-6 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400">Elektron Pochta</h3>
+                    <a href="mailto:rahmatullayev207@gmail.com" class="text-base font-bold text-zinc-900 dark:text-white hover:text-emerald-500 transition-colors mt-0.5 block">
+                        rahmatullayev207@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- Telegram Kartochkasi -->
+            <div class="p-6 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400">Telegram Profil</h3>
+                    <a href="https://t.me/rahmatullayev_uz" target="_blank" rel="noopener noreferrer" class="text-base font-bold text-zinc-900 dark:text-white hover:text-emerald-500 transition-colors mt-0.5 block">
+                        @rahmatullayev_uz
+                    </a>
+                </div>
+            </div>
+
+            <!-- Manzil & Joylashuv -->
+            <div class="p-6 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400">Joylashuv</h3>
+                    <p class="text-base font-bold text-zinc-900 dark:text-white mt-0.5">
+                        Toshkent shahri, O'zbekiston
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- O'ng Tomon: Aloqa Shakli (7 ustun) -->
+        <div class="lg:col-span-7">
+            <div id="contact-form-container" class="p-6 sm:p-8 rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/40 shadow-sm">
+                
+                {% if is_success %}
+                    {% include "contact/partials/success_message.html" %}
+                {% else %}
+                <form method="post"
+                      action="{% url 'contact:contact' %}"
+                      hx-post="{% url 'contact:contact' %}"
+                      hx-target="#contact-form-container"
+                      class="space-y-5">
+                    {% csrf_token %}
+
+                    <!-- Honeypot yashirin maydoni -->
+                    {{ form.honeypot }}
+
+                    <!-- Ism Maydoni -->
+                    <div class="space-y-1.5">
+                        <label for="{{ form.sender_name.id_for_label }}" class="block text-xs font-mono font-semibold uppercase tracking-wider text-zinc-700 dark:text-zinc-300">
+                            Ismingiz <span class="text-emerald-500">*</span>
+                        </label>
+                        {{ form.sender_name }}
+                        {% if form.sender_name.errors %}
+                            <p class="text-xs text-rose-500 mt-1">{{ form.sender_name.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Email Maydoni -->
+                    <div class="space-y-1.5">
+                        <label for="{{ form.sender_email.id_for_label }}" class="block text-xs font-mono font-semibold uppercase tracking-wider text-zinc-700 dark:text-zinc-300">
+                            Elektron Pochtangiz <span class="text-emerald-500">*</span>
+                        </label>
+                        {{ form.sender_email }}
+                        {% if form.sender_email.errors %}
+                            <p class="text-xs text-rose-500 mt-1">{{ form.sender_email.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Mavzu Maydoni -->
+                    <div class="space-y-1.5">
+                        <label for="{{ form.subject.id_for_label }}" class="block text-xs font-mono font-semibold uppercase tracking-wider text-zinc-700 dark:text-zinc-300">
+                            Mavzu
+                        </label>
+                        {{ form.subject }}
+                        {% if form.subject.errors %}
+                            <p class="text-xs text-rose-500 mt-1">{{ form.subject.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Xabar Matni -->
+                    <div class="space-y-1.5">
+                        <label for="{{ form.message.id_for_label }}" class="block text-xs font-mono font-semibold uppercase tracking-wider text-zinc-700 dark:text-zinc-300">
+                            Xabaringiz <span class="text-emerald-500">*</span>
+                        </label>
+                        {{ form.message }}
+                        {% if form.message.errors %}
+                            <p class="text-xs text-rose-500 mt-1">{{ form.message.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Yuborish Tugmasi -->
+                    <div class="pt-2">
+                        <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all flex items-center justify-center gap-2">
+                            <span>Xabarni yuborish</span>
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

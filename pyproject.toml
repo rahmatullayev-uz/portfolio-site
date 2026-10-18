@@ -1,0 +1,40 @@
+[project]
+name = "rahmatullayev-uz"
+version = "0.1.0"
+description = "Sardor Rahmatullayev — Shaxsiy portfolio va blog sayti"
+readme = "README.md"
+authors = [
+    { name = "Sardor", email = "rahmatullayev207@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "bleach>=6.4.0",
+    "django>=6.1.2",
+    "django-environ>=0.14.0",
+    "django-redis>=7.0.0",
+    "gunicorn>=26.2.0",
+    "markdown>=3.11.1",
+    "pillow>=13.0.0",
+    "psycopg[binary]>=3.3.6",
+    "pygments>=2.21.0",
+    "redis>=8.1.0",
+    "requests>=2.34.2",
+    "whitenoise>=6.12.0",
+]
+
+[tool.uv]
+package = false
+
+[dependency-groups]
+dev = [
+    "ruff>=0.17.1",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+extend-exclude = ["*/migrations/*"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501", "F403", "F405"]

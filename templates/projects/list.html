@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Loyihalar — Amalga oshirilgan ishlar | Rahmatullayev.uz{% endblock %}
+
+{% block content %}
+<div class="space-y-10">
+
+    <!-- Sahifa Bosh qismi -->
+    <div class="space-y-4">
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
+            Amalga oshirilgan loyihalar
+        </h1>
+        <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+            Men ishlab chiqqan va arxitekturasini loyihalashtirgan backend tizimlar, ochiq kodli paketlar va veb ilovalar katalogi.
+        </p>
+    </div>
+
+    <!-- Kategoriyalar bo'yicha Filtrlash (HTMX bilan dinamik yuklanish) -->
+    <div class="flex flex-wrap items-center gap-2 pt-2 border-b border-zinc-200 dark:border-zinc-800/80 pb-6">
+        <a href="{% url 'projects:list' %}"
+           hx-get="{% url 'projects:list' %}"
+           hx-target="#project-grid-container"
+           hx-push-url="true"
+           class="px-4 py-2 rounded-xl text-sm font-medium transition-all {% if not active_category %}bg-emerald-600 text-white shadow-sm shadow-emerald-500/20{% else %}bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700{% endif %}">
+            Barchasi
+        </a>
+
+        {% for category in categories %}
+        <a href="{% url 'projects:list' %}?category={{ category.slug }}"
+           hx-get="{% url 'projects:list' %}?category={{ category.slug }}"
+           hx-target="#project-grid-container"
+           hx-push-url="true"
+           class="px-4 py-2 rounded-xl text-sm font-medium transition-all {% if active_category == category.slug %}bg-emerald-600 text-white shadow-sm shadow-emerald-500/20{% else %}bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700{% endif %}">
+            {{ category.name }}
+        </a>
+        {% endfor %}
+    </div>
+
+    <!-- Loyihalar Grid Maydoni -->
+    <div id="project-grid-container">
+        {% include "projects/partials/project_grid.html" %}
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% if posts %}
+<div class="space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {% for post in posts %}
+        <article class="group flex flex-col justify-between p-6 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/40 hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/5 transition-all">
+            <div class="space-y-4">
+                <!-- Meta: Toifa, Sana, O'qish vaqti -->
+                <div class="flex flex-wrap items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+                    {% if post.category %}
+                    <span class="px-2 py-0.5 rounded text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 font-semibold">
+                        {{ post.category.name }}
+                    </span>
+                    <span>&bull;</span>
+                    {% endif %}
+                    <time datetime="{{ post.published_at|date:'Y-m-d' }}">{{ post.published_at|date:"d M, Y" }}</time>
+                    <span>&bull;</span>
+                    <span>{{ post.reading_time_minutes }} daq. mutolaa</span>
+                </div>
+
+                <!-- Sarlavha -->
+                <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-white group-hover:text-emerald-500 transition-colors">
+                    <a href="{% url 'blog:detail' post.slug %}">
+                        {{ post.title }}
+                    </a>
+                </h2>
+
+                <!-- Qisqacha xulosa -->
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-3">
+                    {{ post.summary }}
+                </p>
+            </div>
+
+            <!-- Pastki qism: Teglar va Havola -->
+            <div class="pt-4 mt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
+                <div class="flex flex-wrap gap-1">
+                    {% for tag in post.tags.all|slice:":3" %}
+                    <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 hover:text-emerald-500">
+                        #{{ tag.name }}
+                    </span>
+                    {% endfor %}
+                </div>
+
+                <a href="{% url 'blog:detail' post.slug %}" class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1">
+                    O'qish &rarr;
+                </a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    <!-- Sahifalash (Pagination) -->
+    {% if page_obj.has_other_pages %}
+    <div class="flex items-center justify-center gap-2 pt-8">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}{% if active_category %}&category={{ active_category }}{% endif %}{% if active_tag %}&tag={{ active_tag }}{% endif %}"
+           class="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">
+            &larr; Oldingi
+        </a>
+        {% endif %}
+
+        <span class="text-xs font-mono text-zinc-500 px-3">
+            Sahifa {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}{% if active_category %}&category={{ active_category }}{% endif %}{% if active_tag %}&tag={{ active_tag }}{% endif %}"
+           class="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">
+            Keyingi &rarr;
+        </a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% else %}
+<div class="p-12 text-center rounded-2xl border border-dashed border-zinc-300 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
+    <p class="text-zinc-600 dark:text-zinc-400 text-lg">Hozircha maqolalar topilmadi.</p>
+    <a href="{% url 'blog:list' %}" class="inline-block mt-3 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">Filtrlarni tozalash &rarr;</a>
+</div>
+{% endif %}

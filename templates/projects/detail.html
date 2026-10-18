@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} — Loyiha | Rahmatullayev.uz{% endblock %}
+{% block meta_description %}{{ project.short_description }}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto space-y-12">
+
+    <!-- Orqaga qaytish havolasi -->
+    <div>
+        <a href="{% url 'projects:list' %}" class="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            <span>Loyihalar ro'yxatiga qaytish</span>
+        </a>
+    </div>
+
+    <!-- Sarlavha va Meta qismi -->
+    <header class="space-y-6">
+        <div class="flex flex-wrap items-center gap-3">
+            {% if project.category %}
+            <span class="px-3 py-1 rounded-lg text-xs font-mono uppercase tracking-wider font-semibold bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                {{ project.category.name }}
+            </span>
+            {% endif %}
+            <span class="text-xs font-mono text-zinc-400">
+                {{ project.created_at|date:"F Y" }}
+            </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-tight">
+            {{ project.title }}
+        </h1>
+
+        <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            {{ project.short_description }}
+        </p>
+
+        <!-- Tugmalar: Demo & GitHub -->
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+            {% if project.live_demo_url %}
+            <a href="{{ project.live_demo_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium shadow-sm shadow-emerald-500/20 transition-all">
+                <span>Jonli Demo Sayt</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+            </a>
+            {% endif %}
+
+            {% if project.github_url %}
+            <a href="{{ project.github_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-300 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-900 font-medium transition-all">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                </svg>
+                <span>GitHub Manba Kodi</span>
+            </a>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- Muqova Rasmi -->
+    {% if project.cover_image %}
+    <div class="rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-md">
+        <img src="{{ project.cover_image.url }}" alt="{{ project.title }}" class="w-full max-h-[500px] object-cover">
+    </div>
+    {% endif %}
+
+    <!-- Ishlatilgan Texnologiyalar -->
+    {% if project.technologies.all %}
+    <section class="p-6 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 space-y-3">
+        <h3 class="text-xs font-mono font-bold text-zinc-500 uppercase tracking-wider">
+            Ishlatilgan Texnologiyalar Steki
+        </h3>
+        <div class="flex flex-wrap gap-2">
+            {% for tech in project.technologies.all %}
+            <span class="px-3 py-1 rounded-lg text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 font-medium">
+                {{ tech.name }}
+            </span>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Batafsil Matn (Markdown) -->
+    <section class="prose prose-zinc dark:prose-invert max-w-none text-zinc-700 dark:text-zinc-300 leading-relaxed">
+        {{ project.get_description_html|safe }}
+    </section>
+
+    <!-- O'xshash Loyihalar (Related Projects) -->
+    {% if related_projects %}
+    <section class="pt-8 border-t border-zinc-200 dark:border-zinc-800 space-y-6">
+        <h3 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
+            Boshqa loyihalar
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {% for rel in related_projects %}
+            <div class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/40 dark:bg-zinc-900/30 hover:border-emerald-500/40 transition-colors">
+                <h4 class="font-bold text-zinc-900 dark:text-white">
+                    <a href="{% url 'projects:detail' rel.slug %}" class="hover:text-emerald-500">{{ rel.title }}</a>
+                </h4>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 line-clamp-2">{{ rel.short_description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+</div>
+{% endblock %}

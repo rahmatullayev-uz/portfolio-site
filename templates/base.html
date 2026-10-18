@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sardor Rahmatullayev | Backend Muhandis & Portfolio{% endblock %}</title>
+    
+    <!-- Meta Teglar va SEO -->
+    <meta name="description" content="{% block meta_description %}Sardor Rahmatullayev — Python/Django dasturchi, yuqori yuklamali tizimlar, REST API va zamonaviy arxitekturalar bo'yicha mutaxassisning shaxsiy portfoliosi va texnik blogi.{% endblock %}">
+    <meta name="author" content="Sardor Rahmatullayev">
+    
+    <!-- OpenGraph / Facebook / Telegram -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% block og_title %}Sardor Rahmatullayev — Portfolio & Blog{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Python/Django dasturchi va backend muhandis.{% endblock %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{% block og_image %}{% static 'images/og-default.png' %}{% endblock %}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Sardor Rahmatullayev — Portfolio & Blog{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Python/Django dasturchi va backend muhandis.{% endblock %}">
+
+    <!-- FOUC (Miltillash) ni oldini olish uchun Inline Skript -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+    <!-- Tailwind CSS (Play CDN + Moslashtirilgan Konfiguratsiya) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            950: '#022c22',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- HTMX (Tezkor va yengil AJAX interaktivlik uchun) -->
+    <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYwy4227RIDdzq44HYPFNufz55xblvkURX979D6jHE132SXVUZpN3iVf//z" crossorigin="anonymous"></script>
+
+    <!-- Maxsus CSS va Pygments Kod Sintaksisi -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="min-h-screen flex flex-col bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 selection:bg-emerald-500 selection:text-white transition-colors duration-200">
+    
+    <!-- Sayt Boshqaruv Qatori (Navbar) -->
+    {% include "components/navbar.html" %}
+
+    <!-- Asosiy Kontent Maydoni -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Sayt Pastki Qismi (Footer) -->
+    {% include "components/footer.html" %}
+
+    <!-- Mavzu va Umumiy Skriptlar -->
+    <script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,77 @@
+{% if projects %}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for project in projects %}
+    <article class="group flex flex-col rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/40 overflow-hidden hover:border-emerald-500/40 hover:shadow-xl hover:shadow-emerald-500/5 transition-all">
+        <!-- Rasm -->
+        <a href="{% url 'projects:detail' project.slug %}" class="block h-48 bg-zinc-100 dark:bg-zinc-800/60 overflow-hidden relative">
+            {% if project.cover_image %}
+                <img src="{{ project.cover_image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            {% else %}
+                <div class="w-full h-full flex items-center justify-center bg-gradient-to-tr from-zinc-100 to-zinc-200 dark:from-zinc-900 dark:to-zinc-800 text-zinc-400 dark:text-zinc-600 font-mono text-xs">
+                    [Muqova rasmi]
+                </div>
+            {% endif %}
+
+            {% if project.category %}
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md text-[11px] font-medium font-mono uppercase tracking-wider bg-white/90 dark:bg-zinc-900/90 text-zinc-800 dark:text-zinc-200 backdrop-blur-sm border border-zinc-200/60 dark:border-zinc-700/60">
+                {{ project.category.name }}
+            </span>
+            {% endif %}
+        </a>
+
+        <!-- Ma'lumot -->
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+                <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-white group-hover:text-emerald-500 transition-colors">
+                    <a href="{% url 'projects:detail' project.slug %}">{{ project.title }}</a>
+                </h2>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-3">
+                    {{ project.short_description }}
+                </p>
+            </div>
+
+            <div class="space-y-4 pt-2">
+                <!-- Texnologiyalar nishonlari -->
+                {% if project.technologies.all %}
+                <div class="flex flex-wrap gap-1.5">
+                    {% for tech in project.technologies.all %}
+                    <span class="px-2 py-0.5 rounded text-xs font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-200/60 dark:border-zinc-700/60">
+                        {{ tech.name }}
+                    </span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Havolalar -->
+                <div class="flex items-center justify-between pt-3 border-t border-zinc-100 dark:border-zinc-800/80 text-xs font-medium">
+                    <a href="{% url 'projects:detail' project.slug %}" class="text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1">
+                        Batafsil o'qish
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+
+                    <div class="flex items-center gap-3">
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-zinc-900 dark:hover:text-white" title="GitHub kodi">
+                            GitHub
+                        </a>
+                        {% endif %}
+                        {% if project.live_demo_url %}
+                        <a href="{{ project.live_demo_url }}" target="_blank" rel="noopener noreferrer" class="text-emerald-600 dark:text-emerald-400 hover:underline" title="Jonli Demo">
+                            Demo &nearr;
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% else %}
+<div class="p-12 text-center rounded-2xl border border-dashed border-zinc-300 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
+    <p class="text-zinc-600 dark:text-zinc-400 text-lg">Tanlangan parametrlar bo'yicha loyihalar topilmadi.</p>
+    <a href="{% url 'projects:list' %}" class="inline-block mt-3 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">Filtrlarni tozalash &rarr;</a>
+</div>
+{% endif %}
